@@ -1,0 +1,26 @@
+---
+layout: default
+---
+<section class="hero">
+  <h1 class="hero-title">HoneyHive Newsletter</h1>
+  <p class="hero-sub">Daily tech news curated by HoneyHive</p>
+</section>
+
+<section class="post-list">
+  {% for post in site.posts limit:20 %}
+  <a href="{{ post.url | relative_url }}" class="post-card">
+    <div class="post-card-inner">
+      <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+      <h2 class="post-card-title">{{ post.title | escape }}</h2>
+      <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
+      <span class="read-more">Read more &rarr;</span>
+    </div>
+  </a>
+  {% endfor %}
+
+  {% if site.posts.size == 0 %}
+  <div class="empty-state">
+    <p>No posts yet. Stay tuned!</p>
+  </div>
+  {% endif %}
+</section>

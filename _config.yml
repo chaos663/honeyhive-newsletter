@@ -3,7 +3,6 @@ description: Daily tech news curated by HoneyHive
 url: "https://chaos663.github.io"
 baseurl: "/honeyhive-newsletter"
 
-theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
