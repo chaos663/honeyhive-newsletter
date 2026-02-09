@@ -1,0 +1,30 @@
+title: HoneyHive Newsletter
+description: Daily tech news curated by HoneyHive
+url: "https://chaos663.github.io"
+baseurl: "/honeyhive-newsletter"
+
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# Build settings
+markdown: kramdown
+permalink: /:year/:month/:day/:title/
+
+# Feed
+feed:
+  path: feed.xml
+
+# Collections
+defaults:
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+
+# Exclude
+exclude:
+  - README.md
+  - LICENSE
