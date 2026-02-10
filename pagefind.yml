@@ -1,0 +1,17 @@
+# Pagefind Configuration
+# https://pagefind.app/docs/config-options/
+
+site: _site
+output_subdir: pagefind
+
+# 한글 검색 최적화
+force_language: ko
+
+# 글로벌 필터
+glob: "**/*.html"
+exclude_selectors:
+  - "nav"
+  - "footer"
+  - ".site-nav"
+  - ".site-footer"
+  - ".search-modal"
