@@ -201,6 +201,20 @@ a:hover {
   color: var(--text-secondary);
 }
 
+/* ===== Tag Badges ===== */
+.post-tag {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 0.2em 0.6em;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.tag-daily-briefing { background: rgba(0,210,255,0.15); color: var(--accent-cyan); }
+.tag-deep-dive { background: rgba(123,47,247,0.15); color: var(--accent-purple); }
+.tag-newsletter { background: rgba(139,148,158,0.15); color: var(--text-secondary); }
+
 /* ===== Post Page ===== */
 .post-header {
   margin-bottom: 2rem;
