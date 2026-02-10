@@ -10,13 +10,23 @@ layout: default
   {% for post in site.posts limit:20 %}
   <a href="{{ post.url | relative_url }}" class="post-card">
     <div class="post-card-inner">
-      <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
-      {% for tag in post.tags %}
-      <span class="post-tag tag-{{ tag }}">{{ tag }}</span>
-      {% endfor %}
+      <div class="post-card-meta-top">
+        <time class="post-date" datetime="{{ post.date | date_to_xmlschema }}">{{ post.date | date: "%Y-%m-%d" }}</time>
+        {% for tag in post.tags %}
+        <span class="post-tag tag-{{ tag }}">{{ tag }}</span>
+        {% endfor %}
+      </div>
+      {% if post.series %}
+      <span class="post-series">{{ post.series }}</span>
+      {% endif %}
       <h2 class="post-card-title">{{ post.title | escape }}</h2>
       <p class="post-card-excerpt">{{ post.excerpt | strip_html | truncatewords: 40 }}</p>
-      <span class="read-more">Read more &rarr;</span>
+      <div class="post-card-footer">
+        {% if post.news_count %}
+        <span class="post-news-count">{{ post.news_count }}개 뉴스</span>
+        {% endif %}
+        <span class="read-more">Read more &rarr;</span>
+      </div>
     </div>
   </a>
   {% endfor %}

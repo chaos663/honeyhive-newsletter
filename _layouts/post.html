@@ -4,12 +4,20 @@ layout: default
 <article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
   <header class="post-header">
     <a href="{{ '/' | relative_url }}" class="back-link">&larr; Back to home</a>
-    <time class="post-date dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
-      {{ page.date | date: "%Y-%m-%d" }}
-    </time>
-    {% for tag in page.tags %}
-    <span class="post-tag tag-{{ tag }}">{{ tag }}</span>
-    {% endfor %}
+    <div class="post-meta-top">
+      <time class="post-date dt-published" datetime="{{ page.date | date_to_xmlschema }}" itemprop="datePublished">
+        {{ page.date | date: "%Y-%m-%d" }}
+      </time>
+      {% for tag in page.tags %}
+      <span class="post-tag tag-{{ tag }}">{{ tag }}</span>
+      {% endfor %}
+      {% if page.news_count %}
+      <span class="post-news-count">{{ page.news_count }}개 뉴스</span>
+      {% endif %}
+    </div>
+    {% if page.series %}
+    <span class="post-series">{{ page.series }}</span>
+    {% endif %}
     <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
   </header>
 

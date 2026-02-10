@@ -226,6 +226,42 @@ a:focus-visible {
 .tag-deep-dive { background: rgba(123,47,247,0.15); color: #a78bfa; }
 .tag-newsletter { background: rgba(139,148,158,0.15); color: var(--text-secondary); }
 
+.post-series {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-top: 0.3rem;
+}
+
+.post-news-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.post-card-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.post-card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 0.75rem;
+}
+
+.post-meta-top {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.5rem;
+}
+
 /* ===== Post Page ===== */
 .post-header {
   margin-bottom: 2rem;
