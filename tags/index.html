@@ -1,0 +1,52 @@
+---
+layout: default
+title: 태그 목록
+---
+<div class="tags-page">
+  <header class="page-header">
+    <a href="{{ '/' | relative_url }}" class="back-link">&larr; 홈으로</a>
+    <h1 class="page-title">🏷️ 태그 목록</h1>
+    <p class="page-desc">주제별로 뉴스레터를 탐색하세요</p>
+  </header>
+
+  <div class="tag-cloud">
+    {% assign sorted_tags = site.tags | sort %}
+    {% for tag in sorted_tags %}
+      {% assign tag_name = tag[0] %}
+      {% assign tag_posts = tag[1] %}
+      {% assign post_count = tag_posts | size %}
+      <a href="{{ '/tags/' | relative_url }}{{ tag_name | slugify }}/" class="tag-cloud-item tag-{{ tag_name | slugify }}">
+        <span class="tag-name">{{ tag_name }}</span>
+        <span class="tag-count">{{ post_count }}</span>
+      </a>
+    {% endfor %}
+  </div>
+
+  <section class="tags-list">
+    {% for tag in sorted_tags %}
+      {% assign tag_name = tag[0] %}
+      {% assign tag_posts = tag[1] %}
+      <div class="tag-section" id="tag-{{ tag_name | slugify }}">
+        <h2 class="tag-section-title">
+          <span class="tag-badge tag-{{ tag_name | slugify }}">{{ tag_name }}</span>
+          <span class="tag-section-count">{{ tag_posts | size }}개의 글</span>
+        </h2>
+        <ul class="tag-posts-list">
+          {% for post in tag_posts limit:5 %}
+          <li class="tag-post-item">
+            <a href="{{ post.url | relative_url }}">
+              <span class="tag-post-title">{{ post.title }}</span>
+              <time class="tag-post-date">{{ post.date | date: "%Y-%m-%d" }}</time>
+            </a>
+          </li>
+          {% endfor %}
+          {% if tag_posts.size > 5 %}
+          <li class="tag-post-more">
+            <a href="{{ '/tags/' | relative_url }}{{ tag_name | slugify }}/">전체 {{ tag_posts.size }}개 보기 &rarr;</a>
+          </li>
+          {% endif %}
+        </ul>
+      </div>
+    {% endfor %}
+  </section>
+</div>

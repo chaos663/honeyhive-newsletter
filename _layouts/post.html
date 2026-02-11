@@ -9,7 +9,7 @@ layout: default
         {{ page.date | date: "%Y-%m-%d" }}
       </time>
       {% for tag in page.tags %}
-      <span class="post-tag tag-{{ tag }}">{{ tag }}</span>
+      <a href="{{ '/tags/' | relative_url }}{{ tag | slugify }}/" class="post-tag tag-{{ tag | slugify }}">{{ tag }}</a>
       {% endfor %}
       {% if page.news_count %}
       <span class="post-news-count">{{ page.news_count }}개 뉴스</span>
@@ -24,6 +24,68 @@ layout: default
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
+
+  <!-- 이전/다음 글 네비게이션 -->
+  <nav class="post-navigation">
+    {% if page.previous.url %}
+    <a href="{{ page.previous.url | relative_url }}" class="post-nav-link post-nav-prev">
+      <span class="nav-direction">&larr; 이전 글</span>
+      <span class="nav-title">{{ page.previous.title | truncatewords: 8 }}</span>
+    </a>
+    {% else %}
+    <span class="post-nav-placeholder"></span>
+    {% endif %}
+    
+    {% if page.next.url %}
+    <a href="{{ page.next.url | relative_url }}" class="post-nav-link post-nav-next">
+      <span class="nav-direction">다음 글 &rarr;</span>
+      <span class="nav-title">{{ page.next.title | truncatewords: 8 }}</span>
+    </a>
+    {% else %}
+    <span class="post-nav-placeholder"></span>
+    {% endif %}
+  </nav>
+
+  <!-- 관련 글 추천 -->
+  {% assign max_related = 5 %}
+  {% assign min_common_tags = 1 %}
+  {% assign related_posts = "" | split: "" %}
+  
+  {% for post in site.posts %}
+    {% if post.url != page.url %}
+      {% assign common_tags = 0 %}
+      {% for tag in page.tags %}
+        {% if post.tags contains tag %}
+          {% assign common_tags = common_tags | plus: 1 %}
+        {% endif %}
+      {% endfor %}
+      {% if common_tags >= min_common_tags %}
+        {% assign related_posts = related_posts | push: post %}
+      {% endif %}
+    {% endif %}
+  {% endfor %}
+  
+  {% assign related_count = related_posts | size %}
+  {% if related_count > 0 %}
+  <section class="related-posts">
+    <h2 class="related-title">🔗 관련 글</h2>
+    <div class="related-grid">
+      {% for post in related_posts limit: max_related %}
+      <a href="{{ post.url | relative_url }}" class="related-card">
+        <div class="related-card-inner">
+          <time class="related-date">{{ post.date | date: "%Y-%m-%d" }}</time>
+          <h3 class="related-card-title">{{ post.title | truncatewords: 10 }}</h3>
+          <div class="related-tags">
+            {% for tag in post.tags limit: 2 %}
+            <span class="post-tag tag-{{ tag | slugify }}">{{ tag }}</span>
+            {% endfor %}
+          </div>
+        </div>
+      </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
 
   <footer class="post-footer">
     <a href="{{ '/' | relative_url }}" class="back-link">&larr; Back to all posts</a>

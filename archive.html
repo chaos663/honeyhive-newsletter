@@ -1,0 +1,72 @@
+---
+layout: default
+title: 아카이브
+---
+<div class="archive-page">
+  <header class="page-header">
+    <a href="{{ '/' | relative_url }}" class="back-link">&larr; 홈으로</a>
+    <h1 class="page-title">📚 아카이브</h1>
+    <p class="page-desc">연도별/월별로 정리된 전체 뉴스레터</p>
+  </header>
+
+  <div class="archive-stats">
+    <span class="stat-item">
+      <span class="stat-number">{{ site.posts | size }}</span>
+      <span class="stat-label">전체 글</span>
+    </span>
+    {% assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+    <span class="stat-item">
+      <span class="stat-number">{{ years | size }}</span>
+      <span class="stat-label">년</span>
+    </span>
+  </div>
+
+  <div class="archive-timeline">
+    {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+    {% for year in posts_by_year %}
+    <section class="archive-year" id="year-{{ year.name }}">
+      <h2 class="year-title">
+        <span class="year-label">{{ year.name }}</span>
+        <span class="year-count">{{ year.items | size }}개</span>
+      </h2>
+      
+      {% assign posts_by_month = year.items | group_by_exp: "post", "post.date | date: '%m'" %}
+      {% for month in posts_by_month %}
+      <div class="archive-month">
+        <h3 class="month-title">
+          {% assign month_num = month.name | plus: 0 %}
+          {% case month_num %}
+            {% when 1 %}1월
+            {% when 2 %}2월
+            {% when 3 %}3월
+            {% when 4 %}4월
+            {% when 5 %}5월
+            {% when 6 %}6월
+            {% when 7 %}7월
+            {% when 8 %}8월
+            {% when 9 %}9월
+            {% when 10 %}10월
+            {% when 11 %}11월
+            {% when 12 %}12월
+          {% endcase %}
+          <span class="month-count">({{ month.items | size }})</span>
+        </h3>
+        <ul class="archive-posts">
+          {% for post in month.items %}
+          <li class="archive-post-item">
+            <a href="{{ post.url | relative_url }}" class="archive-post-link">
+              <time class="archive-date">{{ post.date | date: "%d" }}일</time>
+              <span class="archive-title">{{ post.title }}</span>
+              {% for tag in post.tags limit:2 %}
+              <span class="post-tag tag-{{ tag | slugify }}">{{ tag }}</span>
+              {% endfor %}
+            </a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+      {% endfor %}
+    </section>
+    {% endfor %}
+  </div>
+</div>

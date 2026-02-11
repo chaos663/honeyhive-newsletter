@@ -26,6 +26,25 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
+      - name: Generate tag pages
+        run: |
+          mkdir -p tags
+          # Extract all unique tags from posts
+          tags=$(grep -h "^tags:" _posts/*.md | sed 's/tags: \[//' | sed 's/\]//' | tr ',' '\n' | sed 's/^[ ]*//' | sed 's/[ ]*$//' | sort -u)
+          for tag in $tags; do
+            # Remove quotes if present
+            clean_tag=$(echo "$tag" | sed 's/"//g' | sed "s/'//g")
+            slug=$(echo "$clean_tag" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')
+            mkdir -p "tags/$slug"
+            cat > "tags/$slug/index.html" << EOF
+          ---
+          layout: tag
+          title: "태그: $clean_tag"
+          tag: $clean_tag
+          ---
+          EOF
+            echo "Generated tag page for: $clean_tag"
+          done
       - name: Build with Jekyll
         uses: actions/jekyll-build-pages@v1
         with:
