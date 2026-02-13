@@ -2,32 +2,29 @@
 layout: default
 ---
 {% comment %}
-  Reading time calculation (Korean/English mixed)
-  Korean text: number_of_words("auto") handles CJK character-based counting
-  Blended rate: ~350 words/min for Korean-heavy content
-  Images: 12 sec each (first 3), then 3 sec decreasing
+  Reading time: Korean CPM 500 / English WPM 200 분리 계산
+  - number_of_words("auto"): CJK 글자를 개별 단어로 카운트
+  - number_of_words: 공백 구분 영문 단어만 카운트
+  - 차이 = 한글 글자 수 (≈ CJK characters)
+  - 한글 읽기 시간: 한글 글자수 / 500 (CPM)
+  - 영문 읽기 시간: 영문 단어수 / 200 (WPM)
+  - 이미지 보정: 첫 3개 12초, 이후 3초
 {% endcomment %}
 {% assign raw_content = content | strip_html %}
 {% assign words_auto = raw_content | number_of_words: "auto" %}
 {% assign words_en = raw_content | number_of_words %}
 {% assign image_count = content | split: '<img' | size | minus: 1 %}
 
-{% comment %}
-  Korean-heavy heuristic:
-  If auto word count >> English word count, it's mostly Korean.
-  Korean: ~500 chars/min ≈ 350 auto-words/min
-  English: ~200 words/min
-  Blend based on ratio.
-{% endcomment %}
-{% assign korean_ratio = words_auto | minus: words_en %}
-{% if korean_ratio > words_en %}
-  {% comment %} Mostly Korean {% endcomment %}
-  {% assign reading_minutes = words_auto | divided_by: 350 %}
-{% else %}
-  {% comment %} Mostly English or mixed {% endcomment %}
-  {% assign reading_minutes = words_auto | divided_by: 250 %}
-{% endif %}
+{% comment %} 한글 글자 수 = auto 카운트 - 영문 단어 카운트 {% endcomment %}
+{% assign korean_chars = words_auto | minus: words_en %}
+{% if korean_chars < 0 %}{% assign korean_chars = 0 %}{% endif %}
 
+{% comment %} 각각의 읽기 시간(분) 계산 후 합산 {% endcomment %}
+{% assign korean_minutes = korean_chars | divided_by: 500 %}
+{% assign english_minutes = words_en | divided_by: 200 %}
+{% assign reading_minutes = korean_minutes | plus: english_minutes %}
+
+{% comment %} 이미지 보정 {% endcomment %}
 {% assign image_seconds = 0 %}
 {% if image_count > 0 %}
   {% if image_count > 3 %}
