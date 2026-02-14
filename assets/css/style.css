@@ -1596,11 +1596,3 @@ a.post-tag:hover {
   padding: 0 0.75rem;
 }
 
-/* ===== Visitor Counter ===== */
-.visitor-counter {
-  margin-top: 0.75rem;
-}
-
-.visitor-counter img {
-  vertical-align: middle;
-}
