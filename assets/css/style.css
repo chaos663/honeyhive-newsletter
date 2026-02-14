@@ -1136,10 +1136,14 @@ a.post-tag:hover {
 }
 
 @media (min-width: 1200px) {
+  .site-main:has(.post-layout) {
+    max-width: calc(var(--max-width) + 240px + 2rem);
+  }
+
   .post-layout {
-    max-width: calc(var(--max-width) + 280px);
+    max-width: none;
     display: grid;
-    grid-template-columns: 1fr 240px;
+    grid-template-columns: 240px 1fr;
     gap: 2rem;
   }
 
