@@ -70,6 +70,12 @@ layout: default
       <h1 class="post-title p-name" itemprop="name headline">{{ page.title | escape }}</h1>
     </header>
 
+    {% if page.image %}
+    <div class="post-thumbnail">
+      <img src="{{ page.image | relative_url }}" alt="{{ page.title | escape }} 썸네일" class="post-thumbnail-img" loading="lazy">
+    </div>
+    {% endif %}
+
     <!-- Reading Progress Bar -->
     <div class="reading-progress" id="reading-progress" aria-hidden="true">
       <div class="reading-progress-bar" id="reading-progress-bar"></div>
