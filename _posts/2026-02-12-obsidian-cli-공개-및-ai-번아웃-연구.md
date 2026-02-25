@@ -3,7 +3,7 @@ layout: post
 title: "Obsidian CLI 공개 및 AI 번아웃 연구"
 date: 2026-02-12 01:37:58
 excerpt: "오늘의 IT 기술 뉴스 브리핑입니다. Obsidian의 새로운 CLI 도구부터 AI 도입이 오히려 번아웃을 키운다는 흥미로운 연구 결과까지, 주요 소식을 정리했습니다."
-tags: [daily-briefing]
+tags: [IT, daily-briefing]
 series: "꿀벌 뉴스레터"
 news_count: 5
 ---
