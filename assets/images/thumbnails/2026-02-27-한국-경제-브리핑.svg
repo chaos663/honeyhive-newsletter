@@ -1,0 +1,56 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1a0a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0d0d0d;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="stripe" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4CAF50;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#4CAF50;stop-opacity:0.4" />
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="6" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Top accent bar -->
+  <rect x="0" y="0" width="1200" height="8" fill="url(#stripe)"/>
+
+  <!-- Hexagon pattern (subtle) -->
+  <g opacity="0.05">
+    <polygon points="100,30 130,48 130,84 100,102 70,84 70,48" fill="#4CAF50"/>
+    <polygon points="160,30 190,48 190,84 160,102 130,84 130,48" fill="#4CAF50"/>
+    <polygon points="1100,500 1130,518 1130,554 1100,572 1070,554 1070,518" fill="#4CAF50"/>
+    <polygon points="1060,500 1090,518 1090,554 1060,572 1030,554 1030,518" fill="#4CAF50"/>
+  </g>
+
+  <!-- Accent circle -->
+  <circle cx="1050" cy="120" r="180" fill="#4CAF50" opacity="0.04" filter="url(#glow)"/>
+  <circle cx="1050" cy="120" r="100" fill="#4CAF50" opacity="0.06"/>
+
+  <!-- Category badge -->
+  <rect x="60" y="80" width="160" height="44" rx="22" fill="#0d3b0d" opacity="0.9"/>
+  <text x="85" y="108" font-family="'Pretendard', sans-serif" font-size="22" font-weight="700" fill="#4CAF50">📈 경제</text>
+
+  <!-- Title -->
+  <text x="60" y="200" font-family="'Pretendard', 'Apple SD Gothic Neo', sans-serif" font-size="44" font-weight="800" fill="#FFFFFF" letter-spacing="-1">한국 경제 브리핑</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="560" width="1200" height="70" fill="#000000" opacity="0.4"/>
+
+  <!-- Honeyhive brand -->
+  <text x="60" y="605" font-family="'Pretendard', sans-serif" font-size="26" font-weight="600" fill="#4CAF50" opacity="0.9">🐝 HoneyHive Newsletter</text>
+
+  <!-- Date -->
+  <text x="1140" y="605" font-family="'Pretendard', sans-serif" font-size="22" font-weight="400" fill="#AAAAAA" text-anchor="end">2026-02-27</text>
+
+  <!-- Bottom accent line -->
+  <rect x="0" y="622" width="1200" height="8" fill="url(#stripe)" opacity="0.6"/>
+</svg>
