@@ -309,5 +309,53 @@ layout: default
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') closeMobileSheet();
   });
+
+  // === Newsletter Format Styling ===
+  // Automatically apply CSS classes to newsletter-specific patterns
+  var postContent = document.getElementById('post-content');
+  if (postContent) {
+    var paragraphs = postContent.querySelectorAll('p');
+    paragraphs.forEach(function(p) {
+      var text = p.textContent.trim();
+      var strong = p.querySelector('strong');
+
+      // TL;DR box: "🔎 핵심만 콕콕"
+      if (text.indexOf('핵심만 콕콕') !== -1 && strong) {
+        var wrapper = document.createElement('div');
+        wrapper.className = 'tldr-box';
+        wrapper.appendChild(p.cloneNode(true));
+        // Include following <ul> if present
+        var next = p.nextElementSibling;
+        if (next && next.tagName === 'UL') {
+          wrapper.appendChild(next.cloneNode(true));
+          next.remove();
+        }
+        p.parentNode.replaceChild(wrapper, p);
+      }
+
+      // Short news: "👉 **제목**"
+      else if (text.indexOf('👉') === 0) {
+        p.classList.add('short-news-item');
+      }
+
+      // Emoji sub-headings: starts with emoji + bold
+      else if (strong && /^[\u{1F3AF}\u{26A0}\u{1F4C8}\u{1F310}\u{1F6E0}\u{1F52E}\u{1F525}\u{1F4CF}\u{1F4CA}\u{1F4C9}\u{1F3E6}\u{1F4E6}\u{1F30D}\u{1F6E1}\u{1F4A1}\u{1F527}\u{1F50D}\u{1F3AF}]/u.test(text)) {
+        p.classList.add('emoji-heading');
+      }
+    });
+
+    // Glossary box: blockquote starting with "📖"
+    var blockquotes = postContent.querySelectorAll('blockquote');
+    blockquotes.forEach(function(bq) {
+      var text = bq.textContent.trim();
+      if (text.indexOf('📖') === 0) {
+        bq.classList.add('glossary-box');
+      }
+      // Insight box: "💡 한 줄 인사이트"
+      else if (text.indexOf('💡') === 0) {
+        bq.classList.add('insight-box');
+      }
+    });
+  }
 })();
 </script>

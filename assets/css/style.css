@@ -219,9 +219,9 @@ a:focus-visible {
 .tag-daily-briefing { background: rgba(253, 184, 19, 0.2); color: #B8860B; }
 .tag-deep-dive { background: rgba(45, 41, 38, 0.1); color: var(--secondary); }
 .tag-newsletter { background: rgba(92, 86, 82, 0.1); color: var(--text-secondary); }
-.tag-AI { background: rgba(139, 92, 246, 0.12); color: #7C3AED; }
-.tag-증시 { background: rgba(5, 150, 105, 0.12); color: #059669; }
-.tag-market-analysis { background: rgba(217, 119, 6, 0.12); color: #B45309; }
+.tag-AI { background: rgba(109, 40, 217, 0.14); color: #6D28D9; }
+.tag-증시 { background: rgba(4, 120, 87, 0.14); color: #047857; }
+.tag-market-analysis { background: rgba(180, 83, 9, 0.14); color: #92400E; }
 
 .post-series {
   display: inline-block;
@@ -424,6 +424,99 @@ a:focus-visible {
   border: none;
   border-top: 2px solid var(--border);
   margin: 2rem 0;
+}
+
+/* ===== Newsletter Format Styles ===== */
+
+/* TL;DR Box: "🔎 핵심만 콕콕" */
+.post-content p strong:first-child:has(~ br),
+.post-content ul:has(> li:first-child) {
+  /* Fallback — 아래 JS 기반 클래스가 주 스타일 */
+}
+
+.tldr-box {
+  background: linear-gradient(135deg, rgba(253, 184, 19, 0.08), rgba(253, 184, 19, 0.04));
+  border: 1px solid rgba(253, 184, 19, 0.25);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 12px 12px 0;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+}
+
+.tldr-box p:first-child {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-heading);
+  margin-bottom: 0.5rem;
+}
+
+.tldr-box ul {
+  margin: 0;
+  padding-left: 1.2rem;
+}
+
+.tldr-box li {
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.2rem;
+}
+
+/* Term Glossary Box: "📖 용어 해설" */
+.post-content blockquote:has(strong:first-child) {
+  /* Base blockquote is fine, this distinguishes glossary */
+}
+
+.glossary-box {
+  background: linear-gradient(135deg, rgba(45, 41, 38, 0.04), rgba(45, 41, 38, 0.02));
+  border-left: 4px solid var(--text-secondary);
+  border-radius: 0 8px 8px 0;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.glossary-box strong:first-child {
+  color: var(--text-heading);
+}
+
+/* Insight Box: "💡 한 줄 인사이트" */
+.insight-box {
+  background: linear-gradient(135deg, rgba(253, 184, 19, 0.12), rgba(253, 184, 19, 0.06));
+  border-left: 4px solid var(--accent-warm);
+  border-radius: 0 8px 8px 0;
+  padding: 0.75rem 1rem;
+  margin: 1.5rem 0;
+  font-weight: 500;
+}
+
+/* Emoji Sub-headings: "🎯 **무슨 일**:", "⚠️ **왜 지금**:" etc. */
+.emoji-heading {
+  font-size: 1.02rem;
+  margin-top: 1.2rem;
+  margin-bottom: 0.3rem;
+  line-height: 1.6;
+}
+
+.emoji-heading strong {
+  color: var(--text-heading);
+  font-weight: 700;
+}
+
+/* Short News Section: "👉 **뉴스 제목** — 설명" */
+.short-news-item {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid rgba(232, 228, 217, 0.6);
+  line-height: 1.6;
+}
+
+.short-news-item:last-child {
+  border-bottom: none;
+}
+
+.short-news-item strong {
+  color: var(--text-heading);
 }
 
 /* ===== Post Footer ===== */
