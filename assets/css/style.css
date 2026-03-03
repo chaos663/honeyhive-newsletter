@@ -219,6 +219,9 @@ a:focus-visible {
 .tag-daily-briefing { background: rgba(253, 184, 19, 0.2); color: #B8860B; }
 .tag-deep-dive { background: rgba(45, 41, 38, 0.1); color: var(--secondary); }
 .tag-newsletter { background: rgba(92, 86, 82, 0.1); color: var(--text-secondary); }
+.tag-AI { background: rgba(139, 92, 246, 0.12); color: #7C3AED; }
+.tag-증시 { background: rgba(5, 150, 105, 0.12); color: #059669; }
+.tag-market-analysis { background: rgba(217, 119, 6, 0.12); color: #B45309; }
 
 .post-series {
   display: inline-block;
