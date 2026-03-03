@@ -356,6 +356,16 @@ layout: default
         bq.classList.add('insight-box');
       }
     });
+
+    // === Table Mobile Responsive ===
+    var tables = postContent.querySelectorAll('table');
+    tables.forEach(function(table) {
+      if (table.parentNode.classList.contains('table-wrapper')) return;
+      var wrapper = document.createElement('div');
+      wrapper.className = 'table-wrapper';
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    });
   }
 })();
 </script>
