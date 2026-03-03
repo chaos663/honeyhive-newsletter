@@ -1855,17 +1855,17 @@ a.post-tag:hover {
   outline-offset: 2px;
 }
 
-.theme-toggle .icon-sun,
-.theme-toggle .icon-moon {
+/* Light mode default: show moon icon */
+.theme-toggle .icon-sun {
   display: none;
 }
 
-[data-theme="dark"] .theme-toggle .icon-sun {
+.theme-toggle .icon-moon {
   display: block;
 }
 
-:root .theme-toggle .icon-moon,
-[data-theme="light"] .theme-toggle .icon-moon {
+/* Dark mode: show sun, hide moon */
+[data-theme="dark"] .theme-toggle .icon-sun {
   display: block;
 }
 
