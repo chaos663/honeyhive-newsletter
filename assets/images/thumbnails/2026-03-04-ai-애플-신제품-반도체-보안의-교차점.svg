@@ -1,0 +1,100 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- 풀블리드 배경 그라데이션 -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f5576c"/>
+      <stop offset="50%" stop-color="#8b5cf6"/>
+      <stop offset="100%" stop-color="#4568dc"/>
+    </linearGradient>
+
+    <!-- 장식 블롭용 그라데이션 -->
+    <radialGradient id="blob1Grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fb7185" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#fb7185" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blob2Grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#818cf8" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#818cf8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blob3Grad" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#4568dc" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#4568dc" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- 글래스 카드 필터 (blur 배경 시뮬레이션) -->
+    <filter id="glassBlur" x="-10%" y="-10%" width="120%" height="120%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2"/>
+    </filter>
+    <filter id="cardShadow" x="-5%" y="-5%" width="110%" height="115%">
+      <feDropShadow dx="0" dy="8" stdDeviation="20" flood-color="#000000" flood-opacity="0.25"/>
+    </filter>
+
+    <!-- 카드 배경 그라데이션 (유리 느낌) -->
+    <linearGradient id="glassGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.08"/>
+    </linearGradient>
+
+    <!-- 뱃지 배경 -->
+    <linearGradient id="badgeGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#ffffff" stop-opacity="0.12"/>
+    </linearGradient>
+
+    <!-- 카드 클리핑 -->
+    <clipPath id="cardClip">
+      <rect x="100" y="80" width="1000" height="470" rx="24"/>
+    </clipPath>
+  </defs>
+
+  <!-- === 배경 === -->
+  <rect width="1200" height="630" fill="url(#bgGrad)"/>
+
+  <!-- === 장식 블롭 (배경 레이어) === -->
+  <circle cx="150" cy="100" r="220" fill="url(#blob1Grad)"/>
+  <circle cx="1050" cy="520" r="260" fill="url(#blob2Grad)"/>
+  <circle cx="900" cy="80" r="180" fill="url(#blob3Grad)"/>
+
+  <!-- === 미세 그리드 패턴 === -->
+  <g opacity="0.06">
+    <line x1="0" y1="210" x2="1200" y2="210" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="0" y1="420" x2="1200" y2="420" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="400" y1="0" x2="400" y2="630" stroke="#ffffff" stroke-width="0.5"/>
+    <line x1="800" y1="0" x2="800" y2="630" stroke="#ffffff" stroke-width="0.5"/>
+  </g>
+
+  <!-- === 글래스 카드 === -->
+  <g filter="url(#cardShadow)">
+    <!-- 카드 배경 (반투명 유리) -->
+    <rect x="100" y="80" width="1000" height="470" rx="24" fill="url(#glassGrad)"/>
+    <!-- 카드 테두리 (미세한 밝은 선) -->
+    <rect x="100" y="80" width="1000" height="470" rx="24" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+  </g>
+
+  <!-- === 카드 내부 콘텐츠 === -->
+  <g clip-path="url(#cardClip)">
+    <!-- 카드 내부 장식: 상단 코너 하이라이트 -->
+    <ellipse cx="100" cy="80" rx="300" ry="200" fill="#ffffff" opacity="0.04"/>
+
+    <!-- 카테고리 뱃지 (pill) -->
+    <rect x="545" y="110" width="110" height="36" rx="18" fill="url(#badgeGrad)"/>
+    <rect x="545" y="110" width="110" height="36" rx="18" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="0.8"/>
+    <!-- 카테고리 아이콘 -->
+    <g transform="translate(567, 128) scale(0.9)">
+      <path d="M0-11C-6-11-10-8-10-3V2C-10 8 0 12 0 12S10 8 10 2V-3C10-8 6-11 0-11Z" fill="none" stroke="white" stroke-width="1.8"/>
+    </g>
+    <!-- 카테고리 텍스트 -->
+    <text x="585" y="134" font-family="'Pretendard', 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="700" fill="#ffffff">보안</text>
+
+    <!-- 제목 -->
+    <text x="600" y="311" font-family="'Pretendard', 'Apple SD Gothic Neo', sans-serif" font-size="48" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">AI, 애플 신제품, 반도체 &amp; 보안의</text>
+    <text x="600" y="367" font-family="'Pretendard', 'Apple SD Gothic Neo', sans-serif" font-size="48" font-weight="800" fill="#FFFFFF" text-anchor="middle" letter-spacing="-0.5">교차점</text>
+
+    <!-- 구분선 -->
+    <line x1="180" y1="480" x2="1020" y2="480" stroke="rgba(255,255,255,0.15)" stroke-width="1"/>
+
+    <!-- 하단: 브랜드 + 날짜 -->
+    <text x="200" y="520" font-family="'Pretendard', 'Apple SD Gothic Neo', sans-serif" font-size="20" font-weight="600" fill="rgba(255,255,255,0.7)">HoneyHive Newsletter</text>
+    <text x="1000" y="520" font-family="'Pretendard', 'Apple SD Gothic Neo', sans-serif" font-size="18" font-weight="400" fill="rgba(255,255,255,0.5)" text-anchor="end">2026-03-04</text>
+  </g>
+</svg>
