@@ -130,6 +130,17 @@
     })();
   </script>
 
+  <!-- Mermaid.js for charts -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" defer></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
+      if (typeof mermaid !== 'undefined') {
+        mermaid.initialize({ startOnLoad: true, theme: theme, securityLevel: 'loose' });
+      }
+    });
+  </script>
+
   <!-- Pagefind Scripts -->
   <script src="{{ '/pagefind/pagefind-ui.js' | relative_url }}" defer></script>
   <script>
