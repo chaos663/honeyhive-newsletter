@@ -134,6 +134,14 @@
   <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
+      // kramdown: ```mermaid → <code class="language-mermaid"> 변환
+      document.querySelectorAll('code.language-mermaid').forEach(function(code) {
+        var pre = code.parentElement;
+        var div = document.createElement('div');
+        div.className = 'mermaid';
+        div.textContent = code.textContent;
+        pre.parentNode.replaceChild(div, pre);
+      });
       var theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default';
       if (typeof mermaid !== 'undefined') {
         mermaid.initialize({ startOnLoad: true, theme: theme, securityLevel: 'loose' });
